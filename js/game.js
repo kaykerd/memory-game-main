@@ -159,7 +159,7 @@ const checkEndGame = () => {
 
   if (disabledCards.length === 20) {
     clearInterval(this.loop);
-    alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${timer.innerHTML} segundos`);
+    alert(` Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${timer.innerHTML} segundos`);
     location.reload();
   }
 };
@@ -194,7 +194,7 @@ const checkCards = () => {
 
       if (lives === 0) {
         clearInterval(this.loop);
-        alert(`Sinto muito, ${spanPlayer.innerHTML} Você perdeu todas as vidas! Tente novamente.`);
+        alert(`💔 Sinto muito, ${spanPlayer.innerHTML} Você perdeu todas as vidas! Tente novamente.`);
         location.reload();
       }
     }, 500);
