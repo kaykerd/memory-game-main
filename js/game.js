@@ -126,22 +126,22 @@
 // };
 
 //  CODIGO NOVO COM O SISTEMA DE VIDA
-const grid = document.querySelector('.grid');
-const spanPlayer = document.querySelector('.player');
-const timer = document.querySelector('.timer');
-const livesDisplay = document.querySelector('.lives');
+const grid = document.querySelector(".grid");
+const spanPlayer = document.querySelector(".player");
+const timer = document.querySelector(".timer");
+const livesDisplay = document.querySelector(".lives");
 
 const characters = [
-  'beth',
-  'jerry',
-  'jessica',
-  'morty',
-  'pessoa-passaro',
-  'pickle-rick',
-  'rick',
-  'summer',
-  'meeseeks',
-  'scroopy',
+  "beth",
+  "jerry",
+  "jessica",
+  "morty",
+  "pessoa-passaro",
+  "pickle-rick",
+  "rick",
+  "summer",
+  "meeseeks",
+  "scroopy",
 ];
 
 const createElement = (tag, className) => {
@@ -150,30 +150,32 @@ const createElement = (tag, className) => {
   return element;
 };
 
-let firstCard = '';
-let secondCard = '';
+let firstCard = "";
+let secondCard = "";
 let lives = 5;
 
 const checkEndGame = () => {
-  const disabledCards = document.querySelectorAll('.disabled-card');
+  const disabledCards = document.querySelectorAll(".disabled-card");
 
   if (disabledCards.length === 20) {
     clearInterval(this.loop);
-    alert(` Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${timer.innerHTML} segundos`);
+    alert(
+      `🥳 Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${timer.innerHTML} segundos`
+    );
     location.reload();
   }
 };
 
 const checkCards = () => {
-  const firstCharacter = firstCard.getAttribute('data-character');
-  const secondCharacter = secondCard.getAttribute('data-character');
+  const firstCharacter = firstCard.getAttribute("data-character");
+  const secondCharacter = secondCard.getAttribute("data-character");
 
   if (firstCharacter === secondCharacter) {
-    firstCard.firstChild.classList.add('disabled-card');
-    secondCard.firstChild.classList.add('disabled-card');
+    firstCard.firstChild.classList.add("disabled-card");
+    secondCard.firstChild.classList.add("disabled-card");
 
-    firstCard = '';
-    secondCard = '';
+    firstCard = "";
+    secondCard = "";
 
     checkEndGame();
 
@@ -182,11 +184,11 @@ const checkCards = () => {
     updateLives();
   } else {
     setTimeout(() => {
-      firstCard.classList.remove('reveal-card');
-      secondCard.classList.remove('reveal-card');
+      firstCard.classList.remove("reveal-card");
+      secondCard.classList.remove("reveal-card");
 
-      firstCard = '';
-      secondCard = '';
+      firstCard = "";
+      secondCard = "";
 
       // Subtrai uma vida
       lives--;
@@ -194,7 +196,9 @@ const checkCards = () => {
 
       if (lives === 0) {
         clearInterval(this.loop);
-        alert(`💔 Sinto muito, ${spanPlayer.innerHTML} Você perdeu todas as vidas! Tente novamente.`);
+        alert(
+          `💔 Sinto muito, ${spanPlayer.innerHTML} Você perdeu todas as vidas! Tente novamente.`
+        );
         location.reload();
       }
     }, 500);
@@ -205,15 +209,15 @@ const revealCard = (event) => {
   const target = event.target;
   const parentNode = target.parentNode;
 
-  if (parentNode.classList.contains('reveal-card')) {
+  if (parentNode.classList.contains("reveal-card")) {
     return;
   }
 
-  if (firstCard === '') {
-    parentNode.classList.add('reveal-card');
+  if (firstCard === "") {
+    parentNode.classList.add("reveal-card");
     firstCard = parentNode;
-  } else if (secondCard === '') {
-    parentNode.classList.add('reveal-card');
+  } else if (secondCard === "") {
+    parentNode.classList.add("reveal-card");
     secondCard = parentNode;
 
     checkCards();
@@ -221,17 +225,17 @@ const revealCard = (event) => {
 };
 
 const createCard = (character) => {
-  const card = createElement('div', 'card');
-  const front = createElement('div', 'face front');
-  const back = createElement('div', 'face back');
+  const card = createElement("div", "card");
+  const front = createElement("div", "face front");
+  const back = createElement("div", "face back");
 
   front.style.backgroundImage = `url('../images/${character}.png')`;
 
   card.appendChild(front);
   card.appendChild(back);
 
-  card.addEventListener('click', revealCard);
-  card.setAttribute('data-character', character);
+  card.addEventListener("click", revealCard);
+  card.setAttribute("data-character", character);
 
   return card;
 };
@@ -267,7 +271,7 @@ const updateLives = () => {
 };
 
 window.onload = () => {
-  spanPlayer.innerHTML = localStorage.getItem('player');
+  spanPlayer.innerHTML = localStorage.getItem("player");
   updateLives();
   startTimer();
   loadGame();
