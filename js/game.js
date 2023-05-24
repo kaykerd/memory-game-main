@@ -24,7 +24,7 @@ const createElement = (tag, className) => {
 
 let firstCard = "";
 let secondCard = "";
-let lives = 500000;
+let lives = 15;
 let countdownInterval;
 let remainingTime = 60;
 
